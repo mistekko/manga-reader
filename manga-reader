@@ -1,32 +1,17 @@
 #! /usr/bin/python3
 import sys, os, time
 
-"""
-Usage:
-manga-reader [folder] 
-"""
-
-#to do:
-#    -Create help output <-- correction: IMPROVE help output
-#    -Generalise image viewer:
-#        >detect default image/jpg and image/png viewer
-#    -Save progress
-#    -Directory-choosing interface
-
 
 #this could be implemented with argv... DO SO!!
-#update: I did so. 
+#update: I did so.
+#response: thanks pal
 path = sys.argv[1]
-if path == "--help":
-    print("usage:\n\tmanga-reader [folder] [chapter number]")
-
-try: #check whether the user specified a chapter number to start at
-    indice = int(sys.argv[2])
-except IndexError:
-    indice = 1
+if path == "--help" or path == "-h":
+    print("\n\tusage:\n\t\tmanga-reader [folder location] [chapter number]\n")
+    exit()
     
-ti = 0
-
+try: indice = int(sys.argv[2]) #[chapter number]
+except IndexError: indice = 1
 
 print("Using path: " + path)
 
@@ -41,6 +26,10 @@ while True:
     #prefix it with the proper amount of zeroes. This, of course, only works
     #for manga whose chapters are all four digits, but this is the standard
     #mangal naming scheme, and thus is somewhat reasonable.
+    #also this code SUCKS. Three conditionals doing basically the same thing?
+    #Ew! I'm 99% sure there's a function that outputs integers with a given
+    #number of preceding zeroes, but I didn't remember it on my train ride
+    #and have not yet had the time to look it up.
     if indice < 10:
         var = os.system("viewnior " + path + "/*000" + str(indice) + "*")
         print("Using command: viewnior " + path + "/*000" + str(indice) + "*")
