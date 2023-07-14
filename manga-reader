@@ -10,13 +10,14 @@ manga-reader [folder]
 #    -Create help output <-- correction: IMPROVE help output
 #    -Generalise image viewer:
 #        >detect default image/jpg and image/png viewer
-#        
+#    -Save progress
+#    -Directory-choosing interface
 
 
 #this could be implemented with argv... DO SO!!
 #update: I did so. 
 path = sys.argv[1]
-if path == "--help"
+if path == "--help":
     print("usage:\n\tmanga-reader [folder] [chapter number]")
 
 try: #check whether the user specified a chapter number to start at
