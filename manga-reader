@@ -49,7 +49,7 @@ while True:
     #of this function. I could definitely do that, as it's completely within
     #my power.
     if var == 0:
-        print("iteration sucessful")
+        print("Succesful iteration at indice " + str(indice))
         indice += 1
     else:
         print("Error \"" + var + "\" was retruned by viewnior, exiting...")
