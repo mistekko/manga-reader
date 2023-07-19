@@ -1,0 +1,56 @@
+! /usr/bin/python3
+import sys, os, time
+
+
+#this could be implemented with argv... DO SO!!
+#update: I did so.
+#response: thanks pal
+path = sys.argv[1]
+if path == "--help" or path == "-h":
+    print("\n\tusage:\n\t\tmanga-reader [folder location] [chapter number]\n")
+    exit()
+    
+try: indice = int(sys.argv[2]) #[chapter number]
+except IndexError: indice = 1
+
+print("Using path: " + path)
+
+
+while True:
+
+    ti = time.monotonic_ns() #start quit-detection-stopwatch
+    
+    #The following three blocks load the chapter based off of the variable 'indice'
+    #Since not all chapter numbers are unique (i.e., the 95 in chapter 95 is also in chapter 195, 295, 395, etc)
+    #, the program detects the order in order of the chapter number so it can
+    #prefix it with the proper amount of zeroes. This, of course, only works
+    #for manga whose chapters are all four digits, but this is the standard
+    #mangal naming scheme, and thus is somewhat reasonable.
+    #also this code SUCKS. Three conditionals doing basically the same thing?
+    #Ew! I'm 99% sure there's a function that outputs integers with a given
+    #number of preceding zeroes, but I didn't remember it on my train ride
+    #and have not yet had the time to look it up.
+    if indice < 10:
+        var = os.system("viewnior " + path + "/*000" + str(indice) + "*")
+        print("Using command: viewnior " + path + "/*000" + str(indice) + "*")
+        
+    elif (10 <= indice) & (indice < 100):
+        var = os.system("viewnior " + path + "/*00" + str(indice) + "*")
+        print("Using command: viewnior " + path + "/*00" + str(indice) + "*")
+
+    else:
+        var = os.system("viewnior " + path + "/*0" + str(indice) + "*")
+        print("Using command: viewnior " + path + "/*0" + str(indice) + "*")
+
+    if time.monotonic_ns() - ti <= 3000000000: #if the stopwatch has counted out less than three seconds, 
+        break
+    
+    #error detection! I also put the ticker in here. I could put it outside
+    #of this function. I could definitely do that, as it's completely within
+    #my power.
+    if var == 0:
+        print("Succesful iteration at indice " + str(indice))
+        indice += 1
+    else:
+        print("Error \"" + var + "\" was retruned by viewnior, exiting...")
+        break
