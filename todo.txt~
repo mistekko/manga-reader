@@ -1,9 +1,0 @@
-to do:
-    -Create help output <-- correction: IMPROVE help output
-    -Generalise image viewer:
-        >detect default image/jpg and image/png viewer
-	?make the image viewer command into a string type variable
-	      ?check /bin, /usr/bin, and working directory for different compatible image viewers (image-viewer, viewnior, gwenview, gnome default, kdefault, xfce default, and so on. Cinnamon, mate, uhh some more as well)
-    -Save progress
-    -Directory-choosing interface? Maybe?
-    -figure out how to more elagantly select chapter folder
