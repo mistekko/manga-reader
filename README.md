@@ -10,7 +10,7 @@ It's primarily a personal project, so I WILL NOT maintain it regularly, but I do
 
 ### Installation:
 
-<p>Download <code>manga-reader</code> and run <code>chmod 755 manga-reader</code>. Then, either add the installation directory to your path, move <code>manga-reader</code> to a location on your path, or link it to a location on your path. I like to link it to <code>/bin/mr</code> so that I can change the file without having to use root privileges and execute it without modifying <code>$PATH</code>. However, I'm not sure if this is bad practice, so, er, maybe don't do it simply because I told you to. </p>
+<p>Download <code>manga-reader</code> and run <code>chmod +x manga-reader </code> in whatever directory it ends up in. Then, either add the installation directory to your <code>PATH</code> (NOT recommended since it bloats your <code>$PATH</code>), move <code>manga-reader</code> to a location on your <code>$PATH</code>, or link it to a location on your <code>$PATH</code>. I like to link it to <code>~/.local/bin/mr</code>, which is generally a good place to install executables that should be accessible from everywhere but aren't managed by a package manager. </p>
 
 
 ### Usage:
